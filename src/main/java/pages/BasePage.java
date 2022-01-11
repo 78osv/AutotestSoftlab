@@ -25,11 +25,12 @@ public class BasePage {
     public void isElementsDisplayed(List<WebElement> elements) {
         boolean isAllDisplayed = true;
         for (WebElement element : elements) {
-            if (element.isDisplayed() == false) {
+            if (!element.isDisplayed()) {
                 isAllDisplayed = false;
                 break;
             }
         }
+        Assert.assertTrue(isAllDisplayed);
     }
 
     @Step("Проверка, что элемент активен.")
