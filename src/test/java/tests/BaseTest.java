@@ -5,16 +5,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.*;
-import pages.BasePage;
-import pages.SoftLabHomePage;
-import pages.SolutionsPage;
+
 
 import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
-    public static BasePage basePage;
-    public static SoftLabHomePage softLabHomePage;
-    public static SolutionsPage solutionsPage;
+
     public static WebDriver driver;
 
     @BeforeTest
@@ -28,10 +24,6 @@ public class BaseTest {
         ChromeOptions options = new ChromeOptions();
         options.setHeadless(true);
         driver = new ChromeDriver(options);
-
-        basePage = new BasePage(driver);
-        softLabHomePage = new SoftLabHomePage(driver);
-        solutionsPage = new SolutionsPage(driver);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }

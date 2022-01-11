@@ -2,9 +2,12 @@ package tests;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Story;
+import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.ConfProperties;
+import pages.SoftLabHomePage;
+import pages.SolutionsPage;
 
 public class AutoTest extends BaseTest {
 
@@ -18,13 +21,16 @@ public class AutoTest extends BaseTest {
     public void testTaskForAutotest() {
         driver.get(ConfProperties.getProperty("SOFTLAB_HOME_PAGE"));
         driver.navigate().refresh();
-        softLabHomePage.checkAllElementsOnSoftLabHomePage()
+        PageFactory.initElements(driver, SoftLabHomePage.class)
+                .checkAllElementsOnSoftLabHomePage()
                 .openMainNavItem("Решения");
-        solutionsPage.checkAllElementsOnSolutionsPage()
+        PageFactory.initElements(driver, SolutionsPage.class)
+                .checkAllElementsOnSolutionsPage()
                 .hoverToArticle()
                 .clickProductCatalogButton()
                 .checkButtonLookActive();
-        softLabHomePage.clickLogoHomePage()
+        PageFactory.initElements(driver, SoftLabHomePage.class)
+                .clickLogoHomePage()
                 .checkAllElementsOnSoftLabHomePage();
         String url = driver.getCurrentUrl();
         Assert.assertEquals(url, ConfProperties.getProperty("SOFTLAB_HOME_PAGE"));
